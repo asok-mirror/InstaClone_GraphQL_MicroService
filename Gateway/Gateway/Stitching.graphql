@@ -1,0 +1,13 @@
+﻿extend type Query {
+  posts(first: Int = 5): [PostDTO!] @delegate(schema: "posts")
+}
+
+extend type PostDTO {
+  comments: [CommentDTO!]
+    @delegate(schema: "comments", path: "getComments(postId: $fields:id)")
+}
+
+extend type CommentDTO {
+  user: UserDTO!
+    @delegate(schema: "users", path: "userById(id: $fields:userId)")
+}
