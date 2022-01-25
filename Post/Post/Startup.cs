@@ -36,9 +36,9 @@ namespace Post
             //graphql
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
-                .AddProjections()
-                .AddFiltering()
-                .AddSorting();
+                .AddProjections() //Projects incoming queries to db
+                .AddFiltering() //adds filtering capabilities to the schema
+                .AddSorting(); //adds filtering capabilities to the schema
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +57,7 @@ namespace Post
 
             app.UseAuthorization();
 
-            //seed in memory database
+            //seed in-memory database
             SeedDatabase(app);
 
             app.UseEndpoints(endpoints =>
@@ -72,11 +72,11 @@ namespace Post
             {
                 var context = serviceScope.ServiceProvider.GetService<PostDataContext>();
 
-                context.Database.EnsureCreated(); 
+                context.Database.EnsureCreated();
 
-                new PostContextSeed(context).SeedPost();    
+                new PostContextSeed(context).SeedPost();
 
-                context.SaveChanges();                            
+                context.SaveChanges();
             }
         }
     }
