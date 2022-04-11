@@ -24,12 +24,12 @@ The orginal post is published in medium at
 
 ## Run the Services
 
- if needed, setup the Python environment and then change the build scripts to run
+ if needed, setup the Python environment and then change the build scripts to run the app
 
 ```bash
 .\build.bat
 ```
-this build script should expost the services at the configured port
+this build script should expose the services at the configured port
 
 ## GraphQL Endpoint Playground
 
